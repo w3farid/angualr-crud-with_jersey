@@ -1,0 +1,85 @@
+
+<div class="container">
+    <div class="row">
+         <!--start: create product -->
+        <div [hidden]="!isCreate">
+            <div class="col-md-6">
+                <h1 class="h1 mb-3 mt-5">{{formTitle}}</h1>
+                <form #productForm="ngForm" (ngSubmit)="saveProdcut()">
+    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input [(ngModel)]="product.name" type="text" class="form-control" name="name" id="name">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input [(ngModel)]="product.price" type="number" class="form-control" name="price" id="price">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input [(ngModel)]="product.quantity" type="number" class="form-control" name="quantity" id="quantity">
+                    </div>
+                    <button class="btn btn-primary float-right" type="submit">Save</button>
+                </form>
+            </div> 
+        </div>  
+         <!--end: create product -->
+        <!--start: update product -->
+        <div [hidden]="isCreate">
+            <div class="col-md-6">
+                <h1 class="h1 mb-3 mt-5">{{formTitleEdit}}</h1>
+                <form #productForm="ngForm" (ngSubmit)="updateProdcut()">
+    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input [(ngModel)]="product.name" type="text" class="form-control" name="name" id="name">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input [(ngModel)]="product.price" type="number" class="form-control" name="price" id="price">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input [(ngModel)]="product.quantity" type="number" class="form-control" name="quantity" id="quantity">
+                    </div>
+                    <button class="btn btn-primary float-right" type="submit">Update</button>
+                </form>
+            </div> 
+        </div>       
+        <!--end: update product -->        
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of productList">
+                            <td>{{p.id}}</td>
+                            <td>{{p.name}}</td>
+                            <td>{{p.price}}</td>
+                            <td>{{p.quantity}}</td>
+                            <td>
+                                <a (click)="edit(p.id)">Edit</a> |
+                                <a (click)="delete(p.id)">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
